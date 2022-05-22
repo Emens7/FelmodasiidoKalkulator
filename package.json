@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  },
+  "scripts": {
+    "buildcss": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "watchtailwind": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "tw-elements": "^1.0.0-alpha12"
+  }
+}

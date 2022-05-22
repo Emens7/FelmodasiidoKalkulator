@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./dist/output.css?v=2" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Felmondási idő kalkulátor." />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://dbhir.hu/lastWorkDay/img/LastWorkCalc.jpg"
+    />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="420" />
+
+    <title>Munkahelyi felmondás kalkulátor</title>
+  </head>
+  <body>
+    <nav class="flex items-center justify-between flex-wrap bg-cyan-700 p-6">
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <span class="font-semibold text-xl tracking-tight"
+          >Munkahelyi felmondási idő kalkulátor</span
+        >
+      </div>
+      <div class="block lg:hidden"></div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-sm lg:flex-grow">
+          <a
+            href="https://dbhir.hu/"
+            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            dbhir.com
+          </a>
+        </div>
+        <div class="text-sm lg:flex-grow">
+          <a
+            href="./docs/felmondas_munkavall_hatarozott.pdf"
+            class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"
+          >
+            Munkavállalói felmondási minta
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div>
+      <div class="container mx-auto flex justify-center mt-6">
+        <ins
+          class="adsbygoogle responsive-google-ad"
+          style="display: inline-block"
+          data-ad-client="ca-pub-5265860160641262"
+          data-ad-slot="7317648994"
+        ></ins>
+      </div>
+      <script data-cookiecategory="ads">
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <p class="mx-auto text-center mt-6 text-xl text-cyan-800 underline">
+      A felmondási idő hossza a munkaviszony időtartalmától függően, az új Munka
+      Törvénykönyve rendelkezései alapján
+    </p>
+
+    <div class="mx-auto custom-number-input text-xl w-32 mt-6 text-center">
+      <label
+        for="custom-input-number"
+        class="w-full text-gray-700 text-xl font-semibold"
+        >Ledolgozott évek száma:
+      </label>
+      <div
+        class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-4"
+      >
+        <button
+          data-action="decrement"
+          class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none"
+        >
+          <span class="m-auto text-3xl font-thin">−</span>
+        </button>
+        <input
+          type="number"
+          class="yearsNumber outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black md:text-basecursor-default flex items-center text-gray-700 outline-none"
+          name="custom-input-number"
+          value="0"
+        />
+        <button
+          data-action="increment"
+          class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"
+        >
+          <span class="m-auto text-3xl font-thin">+</span>
+        </button>
+      </div>
+
+      <div>
+        <button
+          class="buttonYearsNumber bg-cyan-700 hover:bg-cyan-500 text-white font-bold py-2 px-4 mt-6 rounded"
+        >
+          Kiszámol
+        </button>
+      </div>
+      <p id="day" class="mt-6 text-xl text-red-800 font-bold"></p>
+    </div>
+
+    <div
+      class="mx-auto flex flex-col max-w-xl text-center mt-6 text-xl text-cyan-800 font-bold italic"
+    >
+      <p id="lastWork" class="mt-6"></p>
+    </div>
+
+    <div class="flex items-center justify-center mt-6">
+      <div
+        class="datepicker relative form-floating mb-3 xl:w-96"
+        data-mdb-toggle-button="false"
+      >
+        <input
+          type="text"
+          class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+          placeholder="Megnézem a naptárt"
+          data-mdb-toggle="datepicker"
+        />
+        <label for="floatingInput" class="text-gray-700"
+          >Megnézem a naptárt</label
+        >
+      </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+
+    <script data-cookiecategory="analytics">
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      );
+
+      ga("create", "UA-29353952-1", "auto");
+      ga("send", "pageview");
+    </script>
+
+    <script
+      data-cookiecategory="ads"
+      async
+      src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    ></script>
+    <script data-cookiecategory="ads">
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-5265860160641262",
+        enable_page_level_ads: true,
+      });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+  </body>
+</html>
